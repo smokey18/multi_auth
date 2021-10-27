@@ -34,16 +34,16 @@ class LoginController extends Controller
         $role = Auth()->user()->role;
         switch ($role) {
             case '1':
-                return route('admin.dashboard');
+                return redirect()->route('admin.dashboard');
                 break;
             case '2':
-                return route('buyer.dashboard');
+                return redirect()->route('buyer.dashboard');
                 break;
             case '3':
-                return route('seller.dashboard');
+                return redirect()->route('seller.dashboard');
                 break;
             default:
-                return redirect()->back()->with('roleNotFound', 'Invalid Credentials');
+                return redirect('/home');
                 break;
         }
     }
@@ -68,12 +68,20 @@ class LoginController extends Controller
 
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
 
-            if (auth()->user()->role == 1) {
-                return redirect()->route('admin.dashboard');
-            } elseif (auth()->user()->role == 2) {
-                return redirect()->route('buyer.dashboard');
-            } elseif (auth()->user()->role == 3) {
-                return redirect()->route('seller.dashboard');
+            $role = Auth()->user()->role;
+            switch ($role) {
+                case '1':
+                    return redirect()->route('admin.dashboard');
+                    break;
+                case '2':
+                    return redirect()->route('buyer.dashboard');
+                    break;
+                case '3':
+                    return redirect()->route('seller.dashboard');
+                    break;
+                default:
+                    return redirect('/home');
+                    break;
             }
         } else {
             return redirect()->route('login')->with('error', 'Email and Password are wrong');

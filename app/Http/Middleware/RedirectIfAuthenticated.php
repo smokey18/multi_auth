@@ -17,20 +17,27 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, ...$guards)
-    {
-        $guards = empty($guards) ? [null] : $guards;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check() && Auth::user()->role == 1) {
-                return redirect()->route('admin.dashboard');
-            } elseif (Auth::guard($guard)->check() && Auth::user()->role == 2) {
-                return redirect()->route('buyer.dashboard');
-            } elseif (Auth::guard($guard)->check() && Auth::user()->role == 3) {
-                return redirect()->route('seller.dashboard');
+    public function handle(Request $request, Closure $next, $guard = null)
+    {
+        if (Auth::guard($guard)->check()) {
+            $role = Auth::user()->role;
+
+            switch ($role) {
+                case '1':
+                    return redirect()->route('admin.dashboard');
+                    break;
+                case '2':
+                    return redirect()->route('buyer.dashboard');
+                    break;
+                case '3':
+                    return redirect()->route('seller.dashboard');
+                    break;
+                default:
+                    return redirect('/home');
+                    break;
             }
         }
-
         return $next($request);
     }
 }

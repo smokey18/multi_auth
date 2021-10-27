@@ -29,12 +29,6 @@
 											{{ Session::get('error') }}
 										</div>
 									@endif
-
-									@if (Session::get('roleNotFound'))
-										<div class="alert alert-danger">
-											{{ Session::get('roleNotFound') }}
-										</div>
-									@endif
 								</div>
 
 								<div class="form-group">
