@@ -23,6 +23,20 @@
 							<form method="POST" class="my-login-validation" action="{{ route('login') }}">
 								@csrf
 
+								<div class="results">
+									@if (Session::get('error'))
+										<div class="alert alert-danger">
+											{{ Session::get('error') }}
+										</div>
+									@endif
+
+									@if (Session::get('roleNotFound'))
+										<div class="alert alert-danger">
+											{{ Session::get('roleNotFound') }}
+										</div>
+									@endif
+								</div>
+
 								<div class="form-group">
 									<label for="email">E-Mail Address</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -30,7 +44,7 @@
 
 								<div class="form-group">
 									<label for="password">Password
-										<a href="forgot.html" class="float-right">
+										<a href="{{ route('password.request') }}" class="float-right">
 											Forgot Password?
 										</a>
 									</label>
