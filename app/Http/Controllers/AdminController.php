@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\UpdatePersonalInfoTrait;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -20,4 +21,6 @@ class AdminController extends Controller
     {
         return view('dashboards.admin.settings');
     }
+
+    use UpdatePersonalInfoTrait;
 }

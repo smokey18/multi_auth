@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\UpdatePersonalInfoTrait;
 use Illuminate\Http\Request;
 
 class BuyerController extends Controller
@@ -20,4 +21,6 @@ class BuyerController extends Controller
     {
         return view('dashboards.buyer.settings');
     }
+
+    use UpdatePersonalInfoTrait;
 }
