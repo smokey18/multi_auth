@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:1', 'auth', 'PreventBa
 
     Route::post('update-profile-info', 'App\Http\Controllers\AdminController@updateInfo')->name('adminUpdateInfo');
     Route::post('change-profile-picture', 'App\Http\Controllers\AdminController@updatePicture')->name('adminPictureUpdate');
+    Route::post('change-password', 'App\Http\Controllers\AdminController@changePassword')->name('adminChangePassword');
 });
 
 // Buyer Routes
@@ -43,6 +44,7 @@ Route::group(['prefix' => 'buyer', 'middleware' => ['role:2', 'auth', 'PreventBa
 
     Route::post('update-profile-info', 'App\Http\Controllers\BuyerController@updateInfo')->name('buyerUpdateInfo');
     Route::post('change-profile-picture', 'App\Http\Controllers\BuyerController@updatePicture')->name('buyerPictureUpdate');
+    Route::post('change-password', 'App\Http\Controllers\BuyerController@changePassword')->name('buyerChangePassword');
 });
 
 // Seller Routes
@@ -53,4 +55,5 @@ Route::group(['prefix' => 'seller', 'middleware' => ['role:3', 'auth', 'PreventB
 
     Route::post('update-profile-info', 'App\Http\Controllers\SellerController@updateInfo')->name('sellerUpdateInfo');
     Route::post('change-profile-picture', 'App\Http\Controllers\SellerController@updatePicture')->name('sellerPictureUpdate');
+    Route::post('change-password', 'App\Http\Controllers\SellerController@changePassword')->name('sellerChangePassword');
 });
