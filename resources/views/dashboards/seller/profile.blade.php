@@ -38,7 +38,7 @@
   
                   <p class="profile-email text-center seller_email">{{ Auth::user()->email }}</p>
 
-                  <input type="file" name="seller_image" id="seller_image" style="opacity: 0;height:1px;display:none">
+                  <input type="file" name="user_image" id="user_image" style="opacity: 0;height:1px;display:none">
                   <a href="javascript:void(0)" class="btn btn-primary btn-block" id="change_picture_btn"><b>Change picture</b></a>
                   
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\UpdatePersonalInfoTrait;
+use App\Http\Traits\UpdateProfileImageTrait;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -23,4 +24,6 @@ class AdminController extends Controller
     }
 
     use UpdatePersonalInfoTrait;
+
+    use UpdateProfileImageTrait;
 }
