@@ -52,4 +52,9 @@ class User extends Authenticatable
             return asset('images/user.jpg');
         }
     }
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

@@ -56,4 +56,13 @@ Route::group(['prefix' => 'seller', 'middleware' => ['role:3', 'auth', 'PreventB
     Route::post('update-profile-info', 'App\Http\Controllers\SellerController@updateInfo')->name('sellerUpdateInfo');
     Route::post('change-profile-picture', 'App\Http\Controllers\SellerController@updatePicture')->name('sellerPictureUpdate');
     Route::post('change-password', 'App\Http\Controllers\SellerController@changePassword')->name('sellerChangePassword');
+
+
+    Route::get('/create', '\App\Http\Controllers\SellerController@create')->name('seller.create');
+    Route::post('/store', 'App\Http\Controllers\SellerController@store')->name('seller.store');
+
+    Route::get('/edit/{id}', 'App\Http\Controllers\SellerController@edit');
+    Route::post('/update', 'App\Http\Controllers\SellerController@update')->name('seller.update');
+
+    Route::get('/delete/{id}', 'App\Http\Controllers\SellerController@destroy');
 });
