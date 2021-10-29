@@ -15,6 +15,23 @@
   <link rel="stylesheet" href="{{ asset('plugins/ijaboCropTool/ijaboCropTool.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+  <style>
+    .card-product {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      width: 250px;
+      height: 260px;
+      margin: auto;
+      text-align: center;
+    }
+    
+    .card-body-image img{
+      width: 200px;
+      height: 180px;
+      margin-top: -15px;
+    }
+  </style>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -99,6 +116,8 @@
                   <p>Dashboard</p>
                 </a>
             </li>
+
+            <li class="nav-header">MISCELLANEOUS</li>
             
             <li class="nav-item">
                 <a href="{{ route('buyer.profile') }}" class="nav-link {{ (request()->is('buyer/profile')) ? 'active' : '' }}">

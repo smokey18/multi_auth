@@ -45,6 +45,8 @@ Route::group(['prefix' => 'buyer', 'middleware' => ['role:2', 'auth', 'PreventBa
     Route::post('update-profile-info', 'App\Http\Controllers\BuyerController@updateInfo')->name('buyerUpdateInfo');
     Route::post('change-profile-picture', 'App\Http\Controllers\BuyerController@updatePicture')->name('buyerPictureUpdate');
     Route::post('change-password', 'App\Http\Controllers\BuyerController@changePassword')->name('buyerChangePassword');
+
+    Route::get('product/{id}', 'App\Http\Controllers\BuyerController@detail');
 });
 
 // Seller Routes
