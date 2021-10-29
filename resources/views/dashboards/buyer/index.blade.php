@@ -17,7 +17,7 @@
                           @endforeach
                         </div>
                         <h5><b>{{ $item->title }}</b></h5>
-                        <span style="color: red">{{ $item->price }} $</span>
+                        <span style="color: red">{{ $item->price }}</span>
                       </div>
                     </a>
                   </div>

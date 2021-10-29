@@ -38,7 +38,7 @@
       
       <h4><b>Price:</b></h4>
       <div class="card-subtitle mb-2 text-muted">
-        <h6>{{ $list->price }} $</h6>
+        <h6>{{ $list->price }}</h6>
       </div>
 
       <h4><b>Description:</b></h4>
