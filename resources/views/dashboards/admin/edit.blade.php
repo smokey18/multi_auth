@@ -1,4 +1,4 @@
-@extends('dashboards.seller.layouts.seller-layout')
+@extends('dashboards.admin.layouts.admin-layout')
 
 @section('title', 'Edit Product')
 
@@ -34,7 +34,7 @@
               </div>
             </div>
 
-            <form action="{{ route('seller.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <br>

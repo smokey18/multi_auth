@@ -57,9 +57,8 @@ class SellerController extends Controller
 
     function edit($id)
     {
-        $data = array(
-            'list' => Product::where('id', $id)->first()
-        );
-        return view('dashboards.seller.edit', $data);
+        $list = Product::where('id', $id)->first();
+
+        return view('dashboards.admin.edit', compact('list'));
     }
 }

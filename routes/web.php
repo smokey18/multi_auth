@@ -34,6 +34,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:1', 'auth', 'PreventBa
     Route::post('update-profile-info', 'App\Http\Controllers\AdminController@updateInfo')->name('adminUpdateInfo');
     Route::post('change-profile-picture', 'App\Http\Controllers\AdminController@updatePicture')->name('adminPictureUpdate');
     Route::post('change-password', 'App\Http\Controllers\AdminController@changePassword')->name('adminChangePassword');
+
+    Route::get('/create', '\App\Http\Controllers\AdminController@create')->name('admin.create');
+    Route::post('/store', 'App\Http\Controllers\AdminController@store')->name('admin.store');
+
+    Route::get('/edit/{id}', 'App\Http\Controllers\AdminController@edit');
+    Route::post('/update', 'App\Http\Controllers\AdminController@update')->name('admin.update');
+
+    Route::get('/delete/{id}', 'App\Http\Controllers\AdminController@destroy');
 });
 
 // Buyer Routes

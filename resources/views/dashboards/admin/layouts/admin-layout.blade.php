@@ -15,6 +15,14 @@
    <link rel="stylesheet" href="{{ asset('plugins/ijaboCropTool/ijaboCropTool.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+  <style>
+    .thumb{
+        margin: 10px 5px 0 0;
+        width: 300px;
+    }
+</style>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -93,12 +101,21 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-compact nav-child-indent nav-collapse-hide-child nav-flat" data-widget="treeview" role="menu" data-accordion="false">
 
-            <li class="nav-item">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-home"></i>
-                  <p>Dashboard</p>
-                </a>
-            </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-home"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('admin.create') }}" class="nav-link {{ (request()->is('admin/create')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-plus"></i>
+              <p>Add Project</p>
+            </a>
+          </li>
+
+          <li class="nav-header">MISCELLANEOUS</li>
             
             <li class="nav-item">
                 <a href="{{ route('admin.profile') }}" class="nav-link {{ (request()->is('admin/profile')) ? 'active' : '' }}">
@@ -232,6 +249,29 @@
     });
 
   });
+</script>
+
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('text-area');
+</script>
+
+<script>
+  function loadPreview(input){
+      var data = $(input)[0].files; //this file data
+      $.each(data, function(index, file){
+          if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){
+              var fRead = new FileReader();
+              fRead.onload = (function(file){
+                  return function(e) {
+                      var img = $('<img/>').addClass('thumb').attr('src', e.target.result); //create image thumb element
+                      $('#thumb-output').append(img);
+                  };
+              })(file);
+              fRead.readAsDataURL(file);
+          }
+      });
+  }
 </script>
 
 </body>

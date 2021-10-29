@@ -1,6 +1,6 @@
-@extends('dashboards.seller.layouts.seller-layout')
+@extends('dashboards.admin.layouts.admin-layout')
 
-@section('title', 'Edit Product')
+@section('title', 'Add Product')
 
 @section('content')
 
@@ -9,12 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Product</h1>
+            <h1>Add Product</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Edit Product</li>
+              <li class="breadcrumb-item active">Add Product</li>
             </ol>
           </div>
         </div>
@@ -34,45 +34,47 @@
               </div>
             </div>
 
-            <form action="{{ route('seller.update') }}" method="POST" enctype="multipart/form-data">
+            <br>
+
+            @if (Session::get('success'))
+            <div class="alert alert-success">
+                {{ Session::get('success') }}
+            </div>
+            @endif
+
+            @if (Session::get('fail'))
+            <div class="alert alert-danger">
+                {{ Session::get('fail') }}
+            </div>
+            @endif
+
+            <form action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <br>
-
-                @if (Session::get('success'))
-                <div class="alert alert-success">
-                    {{ Session::get('success') }}
-                </div>
-                @endif
-
-                <input type="hidden" name="cid" value="{{ $list->id }}">
                 <div class="card-body">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" name="title" id="title" class="form-control" value="{{ $list->title }}">
+                        <input type="text" name="title" id="title" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea name="description" id="text-area" class="form-control">{{ $list->description }}</textarea>
+                        <textarea name="description" id="text-area" class="form-control"></textarea>
                     </div>
                     
                     <div class="form-group">
                         <label for="price">Price ($)</label>
                         <input type="number" name="price" id="price" class="form-control">
-                        <p>Old Price: {{ $list->price }}</p>
                     </div>
 
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <input type="file" class="form-control" name="image[]" multiple>
-                        @foreach (explode('|', $list->image) as $newImage)
-                            <img width="75px" height="70px" src="/images/{{ $newImage }}">
-                        @endforeach
+                        <input type="file" onchange="loadPreview(this)" name="image[]" multiple>
+                        <div id="thumb-output"></div>
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success float-right">UPDATE</button>
+                        <button type="submit" class="btn btn-success float-right">SAVE</button>
                     </div>
                 </div>
             </form>
