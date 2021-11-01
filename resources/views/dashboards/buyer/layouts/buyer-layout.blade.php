@@ -70,7 +70,10 @@
       </li>
 
       <li class="nav-item d-none d-sm-inline-block">
-        <li class="nav-item dropdown">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('cartList') }}">My Cart</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">

@@ -55,6 +55,12 @@ Route::group(['prefix' => 'buyer', 'middleware' => ['role:2', 'auth', 'PreventBa
     Route::post('change-password', 'App\Http\Controllers\BuyerController@changePassword')->name('buyerChangePassword');
 
     Route::get('product/{id}', 'App\Http\Controllers\BuyerController@detail');
+
+    Route::post('add_to_cart', 'App\Http\Controllers\BuyerController@addToCart')->name('addToCart');
+    Route::get('cart_list', 'App\Http\Controllers\BuyerController@cartList')->name('cartList');
+    Route::get('/removecart/{id}', 'App\Http\Controllers\BuyerController@removeCart');
+
+    Route::get('/checkout', 'App\Http\Controllers\BuyerController@checkout');
 });
 
 // Seller Routes

@@ -59,6 +59,6 @@ class SellerController extends Controller
     {
         $list = Product::where('id', $id)->first();
 
-        return view('dashboards.admin.edit', compact('list'));
+        return view('dashboards.seller.edit', compact('list'));
     }
 }

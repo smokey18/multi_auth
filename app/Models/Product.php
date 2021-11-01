@@ -22,7 +22,17 @@ class Product extends Model
         return $this->belongsTo(User::class, 'seller_id');
     }
 
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
     public function getPriceAttribute($price)
+    {
+        return $price . " $";
+    }
+
+    public function setPriceAttribute($price)
     {
         return $price . " $";
     }

@@ -65,9 +65,23 @@
           </tbody>
         </table>
       </div>
-      <button type="button" class="btn btn-success btn-md mr-1 mb-2">Buy now</button>
-      <button type="button" class="btn btn-light btn-md mr-1 mb-2">
-        <i class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
+      <form action="{{ route('addToCart') }}" method="POST">
+        @csrf
+        <input type="hidden" name="product_id" value="{{ $list->id }}">
+        <button class="btn btn-secondary btn-md mr-1 mb-2"></i>Add to cart</button>
+      </form>
+      @if (Session::get('error'))
+        <div class="alert alert-danger">
+          {{ Session::get('error') }}
+        </div>
+      @endif
+      
+      @if (Session::get('success'))
+        <div class="alert alert-success">
+          {{ Session::get('success') }}
+          <a href="{{ route('cartList') }}">(View Your Cart)</a>
+        </div>
+      @endif
     </div>
   </div>
   
