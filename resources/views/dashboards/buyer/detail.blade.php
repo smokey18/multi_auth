@@ -65,7 +65,7 @@
           </tbody>
         </table>
       </div>
-      <form action="{{ route('addToCart') }}" method="POST">
+      <form action="{{ route('addToCart') }}" method="POST" id="addToCart">
         @csrf
         <input type="hidden" name="product_id" value="{{ $list->id }}">
         <button class="btn btn-secondary btn-md mr-1 mb-2"></i>Add to cart</button>

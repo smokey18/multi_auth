@@ -49,9 +49,9 @@ class BuyerController extends Controller
                 'buyer_id' => Auth::user()->id,
                 'product_id' => $request->product_id
             ]);
-            return redirect()->back()->with('success', 'Added to Cart Successfully');
+            return response()->json(['status' => 1, 'msg' => 'Added to Cart Successfully']);
         } else {
-            return redirect()->back()->with('error', 'Please Login First');
+            return response()->json(['status' => 0, 'msg' => 'Please Login First']);
         }
     }
 
@@ -64,9 +64,13 @@ class BuyerController extends Controller
 
     function removeCart($id)
     {
-        Cart::where('id', $id)->delete();
+        $cart = Cart::where('id', $id)->delete();
 
-        return redirect()->back()->with('success', 'Cart Removed Successfully');
+        if (!$cart) {
+            return response()->json(['status' => 0, 'msg' => 'Something went wrong.']);
+        } else {
+            return response()->json(['status' => 1, 'msg' => 'Cart Removed Successfully']);
+        }
     }
 
     function checkout()

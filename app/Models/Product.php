@@ -31,9 +31,4 @@ class Product extends Model
     {
         return $price . " $";
     }
-
-    public function setPriceAttribute($price)
-    {
-        return $price . " $";
-    }
 }
