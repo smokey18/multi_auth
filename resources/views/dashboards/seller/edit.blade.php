@@ -59,7 +59,7 @@
                     
                     <div class="form-group">
                         <label for="price">Price ($)</label>
-                        <input type="number" name="price" id="price" class="form-control" value="{{ $list->price }}">
+                        <input type="text" name="price" id="price" class="form-control" value="{{ $list->price }}">
                         <p>Old Price: {{ $list->price }}</p>
                     </div>
 

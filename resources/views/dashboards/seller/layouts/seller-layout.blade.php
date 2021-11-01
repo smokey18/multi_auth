@@ -19,7 +19,7 @@
   <style>
       .thumb{
           margin: 10px 5px 0 0;
-          width: 300px;
+          width: 200px;
       }
   </style>
 </head>
@@ -110,7 +110,7 @@
             <li class="nav-item">
               <a href="{{ route('seller.create') }}" class="nav-link {{ (request()->is('seller/create')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-plus"></i>
-                <p>Add Project</p>
+                <p>Add Product</p>
               </a>
             </li>
 
