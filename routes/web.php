@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuyerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,8 @@ Route::group(['prefix' => 'buyer', 'middleware' => ['role:2', 'auth', 'PreventBa
     Route::get('/removecart/{id}', 'App\Http\Controllers\BuyerController@removeCart');
 
     Route::get('/checkout', 'App\Http\Controllers\BuyerController@checkout');
+
+    Route::post('payment_stripe', [BuyerController::class, 'stripePost'])->name('stripe.payment');
 });
 
 // Seller Routes
@@ -72,7 +75,6 @@ Route::group(['prefix' => 'seller', 'middleware' => ['role:3', 'auth', 'PreventB
     Route::post('update-profile-info', 'App\Http\Controllers\SellerController@updateInfo')->name('sellerUpdateInfo');
     Route::post('change-profile-picture', 'App\Http\Controllers\SellerController@updatePicture')->name('sellerPictureUpdate');
     Route::post('change-password', 'App\Http\Controllers\SellerController@changePassword')->name('sellerChangePassword');
-
 
     Route::get('/create', '\App\Http\Controllers\SellerController@create')->name('seller.create');
     Route::post('/store', 'App\Http\Controllers\SellerController@store')->name('seller.store');

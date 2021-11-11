@@ -17,6 +17,31 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
 
+    <style type="text/css">
+        .container {
+            margin-top: 40px;
+        }
+
+        .panel-heading {
+            display: inline;
+            font-weight: bold;
+        }
+
+        .flex-table {
+            display: table;
+        }
+
+        .display-tr {
+            display: table-row;
+        }
+
+        .display-td {
+            display: table-cell;
+            vertical-align: middle;
+            width: 55%;
+        }
+    </style>
+
     <style>
         .card-product {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -31,7 +56,6 @@
             height: 180px;
             margin-top: -15px;
         }
-
     </style>
 
 </head>
@@ -44,8 +68,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -178,6 +201,61 @@
     <script src="{{ asset('plugins/ijaboCropTool/ijaboCropTool.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
+
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script type="text/javascript">
+        $(function() {
+        var $form         = $(".validation");
+      $('form.validation').bind('submit', function(e) {
+        var $form         = $(".validation"),
+            inputVal = ['input[type=email]', 'input[type=password]',
+                             'input[type=text]', 'input[type=file]',
+                             'textarea'].join(', '),
+            $inputs       = $form.find('.required').find(inputVal),
+            $errorStatus = $form.find('div.error'),
+            valid         = true;
+            $errorStatus.addClass('hide');
+     
+            $('.has-error').removeClass('has-error');
+        $inputs.each(function(i, el) {
+          var $input = $(el);
+          if ($input.val() === '') {
+            $input.parent().addClass('has-error');
+            $errorStatus.removeClass('hide');
+            e.preventDefault();
+          }
+        });
+      
+        if (!$form.data('cc-on-file')) {
+          e.preventDefault();
+          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+          Stripe.createToken({
+            number: $('.card-num').val(),
+            cvc: $('.card-cvc').val(),
+            exp_month: $('.card-expiry-month').val(),
+            exp_year: $('.card-expiry-year').val()
+          }, stripeHandleResponse);
+        }
+      
+      });
+      
+      function stripeHandleResponse(status, response) {
+            if (response.error) {
+                $('.error')
+                    .removeClass('hide')
+                    .find('.alert')
+                    .text(response.error.message);
+            } else {
+                var token = response['id'];
+                $form.find('input[type=text]').empty();
+                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                $form.get(0).submit();
+            }
+        }
+      
+    });
+    </script>
 
     {{-- CUSTOM JS CODES --}}
     <script>

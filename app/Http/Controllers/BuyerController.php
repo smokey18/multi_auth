@@ -7,8 +7,10 @@ use App\Http\Traits\UpdatePersonalInfoTrait;
 use App\Http\Traits\UpdateProfileImageTrait;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Stripe;
 
 class BuyerController extends Controller
 {
@@ -57,7 +59,8 @@ class BuyerController extends Controller
 
     function cartList(Product $product)
     {
-        $cart = Cart::with(['user', 'product'])->where('buyer_id', Auth::user()->id)->paginate(10);
+        $cart = Cart::with(['user', 'product'])->where('buyer_id', Auth::id())
+            ->paginate(10);
 
         return view('dashboards.buyer.cart', compact('cart'));
     }
@@ -78,5 +81,21 @@ class BuyerController extends Controller
         $cart = Cart::with(['user', 'product'])->where('buyer_id', Auth::user()->id)->paginate(10);
 
         return view('dashboards.buyer.checkout', compact('cart'));
+    }
+
+    public function stripePost(Request $request)
+    {
+
+        $price = Cart::with(['user', 'product'])->where('buyer_id', Auth::user()->id)->paginate(10);
+
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create([
+            "amount" => $price,
+            "currency" => "usd",
+            "source" => $request->stripeToken,
+            "description" => "Making test payment."
+        ]);
+
+        return redirect()->back()->with('success', 'Payment successful!');
     }
 }

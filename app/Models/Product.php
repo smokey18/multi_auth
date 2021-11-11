@@ -27,8 +27,8 @@ class Product extends Model
         return $this->hasMany(Cart::class);
     }
 
-    public function getPriceAttribute($price)
+    public function getPriceAttribute($value)
     {
-        return $price . " $";
+        return number_format($value, 0, '.', ',') . "$";
     }
 }
