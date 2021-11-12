@@ -62,7 +62,12 @@ class BuyerController extends Controller
         $cart = Cart::with(['user', 'product'])->where('buyer_id', Auth::id())
             ->paginate(10);
 
-        return view('dashboards.buyer.cart', compact('cart'));
+        $total = 0;
+        foreach ($cart as $checkproduct) {
+            $total += (int)$checkproduct->product->price;
+        }
+
+        return view('dashboards.buyer.cart', compact('cart', 'total'));
     }
 
     function removeCart($id)
@@ -78,19 +83,28 @@ class BuyerController extends Controller
 
     function checkout()
     {
-        $cart = Cart::with(['user', 'product'])->where('buyer_id', Auth::user()->id)->paginate(10);
+        $cart = Cart::with(['user', 'product'])->where('buyer_id', Auth::id())->paginate(10);
 
-        return view('dashboards.buyer.checkout', compact('cart'));
+        $total = 0;
+        foreach ($cart as $checkproduct) {
+            $total += (int)$checkproduct->product->price;
+        }
+
+        return view('dashboards.buyer.checkout', compact('cart', 'total'));
     }
 
     public function stripePost(Request $request)
     {
+        $cart = Cart::with(['user', 'product'])->where('buyer_id', Auth::user()->id)->paginate(10);
 
-        $price = Cart::with(['user', 'product'])->where('buyer_id', Auth::user()->id)->paginate(10);
+        $total = 0;
+        foreach ($cart as $checkproduct) {
+            $total += (int)$checkproduct->product->price;
+        }
 
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create([
-            "amount" => $price,
+            "amount" => $total * 100,
             "currency" => "usd",
             "source" => $request->stripeToken,
             "description" => "Making test payment."

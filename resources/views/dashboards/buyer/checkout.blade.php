@@ -90,9 +90,7 @@
                                 <div>
                                     <strong>Total Amount:</strong>
                                 </div>
-                                @foreach ($cart as $check)
-                                <strong>{{ $check->product->sum('price') }}</strong>
-                                @endforeach
+                                <h3><b>{{ $total }}</b></h3>
                             </li>
                         </ul>
                     </div>

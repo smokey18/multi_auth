@@ -68,10 +68,10 @@
 
                         @endforeach
 
-                        <div class="total">
-                            <p style='text-align: right'>
-                            <p>Total Items: {{ $cartItem->count('product_id') }}</p>
-                            </p>
+                        <div style="text-align: right">
+                            <strong>
+                                <h3>Total Price: {{ $total }}</h3>
+                            </strong>
                         </div>
                         <br>
                         <div>
