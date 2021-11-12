@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\ChatsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:1', 'auth', 'PreventBa
     Route::post('/update', 'App\Http\Controllers\AdminController@update')->name('admin.update');
 
     Route::get('/delete/{id}', 'App\Http\Controllers\AdminController@destroy');
+
+    Route::get('/chat', [ChatsController::class, 'chat']);
+    Route::get('/messages', [ChatsController::class, 'fetchMessages']);
+    Route::post('/messages', [ChatsController::class, 'sendMessage']);
 });
 
 // Buyer Routes
@@ -64,6 +69,10 @@ Route::group(['prefix' => 'buyer', 'middleware' => ['role:2', 'auth', 'PreventBa
     Route::get('/checkout', 'App\Http\Controllers\BuyerController@checkout');
 
     Route::post('payment_stripe', [BuyerController::class, 'stripePost'])->name('stripe.payment');
+
+    Route::get('/chat', [ChatsController::class, 'chat']);
+    Route::get('/messages', [ChatsController::class, 'fetchMessages']);
+    Route::post('/messages', [ChatsController::class, 'sendMessage']);
 });
 
 // Seller Routes
@@ -83,4 +92,8 @@ Route::group(['prefix' => 'seller', 'middleware' => ['role:3', 'auth', 'PreventB
     Route::post('/update', 'App\Http\Controllers\SellerController@update')->name('seller.update');
 
     Route::get('/delete/{id}', 'App\Http\Controllers\SellerController@destroy');
+
+    Route::get('/chat', [ChatsController::class, 'chat']);
+    Route::get('/messages', [ChatsController::class, 'fetchMessages']);
+    Route::post('/messages', [ChatsController::class, 'sendMessage']);
 });
