@@ -168,6 +168,15 @@
                                 <p>Settings</p>
                             </a>
                         </li>
+
+                        <li class="nav-header">Other's</li>
+                        
+                        <li class="nav-item">
+                            <a href="{{ route('chat') }}" class="nav-link {{ request()->is('chat') ? 'active' : '' }}">
+                                <i class="nav-icon fab fa-facebook-messenger"></i>
+                                <p>Chat</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

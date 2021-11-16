@@ -25,16 +25,16 @@ class RedirectIfAuthenticated
 
             switch ($role) {
                 case '1':
-                    return route('admin.dashboard');
+                    return redirect()->route('admin.dashboard');
                     break;
                 case '2':
-                    return route('buyer.dashboard');
+                    return redirect()->route('buyer.dashboard');
                     break;
                 case '3':
-                    return route('seller.dashboard');
+                    return redirect()->route('seller.dashboard');
                     break;
                 default:
-                    return route('home');
+                    return redirect()->route('home');
                     break;
             }
         }

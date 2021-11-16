@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessagesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -83,4 +85,12 @@ Route::group(['prefix' => 'seller', 'middleware' => ['role:3', 'auth', 'PreventB
     Route::post('/update', 'App\Http\Controllers\SellerController@update')->name('seller.update');
 
     Route::get('/delete/{id}', 'App\Http\Controllers\SellerController@destroy');
+});
+
+Route::get('/chat', [HomeController::class, 'chat'])->name('chat');
+Route::get('/load-latest-messages', [MessagesController::class, 'getLoadLatestMessages']);
+Route::post('/send', [MessagesController::class, 'postSendMessage']);
+Route::get('/fetch-old-messages', [MessagesController::class, 'getOldMessages']);
+Route::get('/emit', function () {
+    \App\Events\MessageSent::broadcast(\App\Models\User::find(1));
 });

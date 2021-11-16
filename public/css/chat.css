@@ -1,0 +1,117 @@
+p {
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.base_receive p {
+    background: #4bdbe6;
+}
+
+.base_sent p {
+    background: #e674a8;
+}
+
+time {
+    font-size: 11px;
+    font-style: italic;
+}
+
+#login-box {
+    margin-top: 20px
+}
+
+#chat_box {
+    position: fixed;
+    top: 10%;
+    right: 5%;
+    width: 27%;
+}
+
+.close-chat {
+    margin-top: -17px;
+    cursor: pointer;
+}
+
+.chat_box {
+    margin-right: 25px;
+    width: 310px;
+}
+
+.chat-area {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+#users li {
+    margin-bottom: 5px;
+}
+
+#chat-overlay {
+    position: fixed;
+    right: 0%;
+    bottom: 0%;
+}
+
+.glyphicon-ok {
+    color: #42b7dd;
+}
+
+.loader {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+.chat_input {
+    font-size: 15px;
+}
+
+.btn-chat {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.no-more-messages {
+    background-color: #b32b2b;
+    margin: 3px;
+    margin-bottom: 6px;
+    padding: 3px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.panel-footer {
+    padding-left: 3px !important;
+}
+
+.upload-btn {
+    font-size: 19px;
+    color: #2b2be6;
+}
+
+.emoji-list {
+    margin-top: 4px;
+}
+
+.emoji-list ul {
+    list-style-type: none;
+}
+
+.emoji-list ul li {
+    display: inline-block;
+    margin: 3px;
+}
+
+.emoji-list ul li a {
+    text-decoration: none;
+    font-size: 14px;
+}

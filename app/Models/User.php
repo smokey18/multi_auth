@@ -49,7 +49,7 @@ class User extends Authenticatable
         if ($value) {
             return asset('images/' . $value);
         } else {
-            return asset('images/user.jpg');
+            return asset('images/user-avatar.png');
         }
     }
 
@@ -61,5 +61,10 @@ class User extends Authenticatable
     public function cart()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function message()
+    {
+        return $this->hasMany(Message::class);
     }
 }

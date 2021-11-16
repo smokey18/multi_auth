@@ -22,7 +22,6 @@
             margin: 10px 5px 0 0;
             width: 300px;
         }
-
     </style>
 
 </head>
@@ -35,8 +34,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -139,6 +137,16 @@
                                 class="nav-link {{ request()->is('admin/settings') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>Settings</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-header">Other's</li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('chat') }}"
+                                class="nav-link {{ request()->is('chat') ? 'active' : '' }}">
+                                <i class="nav-icon fab fa-facebook-messenger"></i>
+                                <p>Chat</p>
                             </a>
                         </li>
                     </ul>
