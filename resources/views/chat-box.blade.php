@@ -21,7 +21,7 @@
                             Send</button>
                     </div>
                     <form method="post" enctype="multipart/form-data" class="upload-frm" style="display: none">
-                        <input type="file" name="image" class="image" accept="image/png, image/gif, image/jpeg" />
+                        <input type="file" name="image[]" class="image" accept="image/png, image/gif, image/jpeg" multiple />
                     </form>
 
                     <div class="emoji-list">

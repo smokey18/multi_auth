@@ -11,6 +11,8 @@ class Message extends Model
 
     protected $appends = ['date_time_str', 'date_human_readable', 'image_url'];
 
+    protected $fillable = ['message', 'image'];
+
     public function fromUser()
     {
         return $this->belongsTo(User::class, 'from_user');

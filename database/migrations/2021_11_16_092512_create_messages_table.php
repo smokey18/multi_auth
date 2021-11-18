@@ -18,6 +18,7 @@ class CreateMessagesTable extends Migration
             $table->unsignedBigInteger('from_user');
             $table->unsignedBigInteger('to_user');
             $table->text('content')->nullable();
+            $table->string("image")->nullable();
             $table->timestamps();
 
             $table->foreign('from_user')->references('id')->on('users');

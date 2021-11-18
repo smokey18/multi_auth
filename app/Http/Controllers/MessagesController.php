@@ -14,7 +14,7 @@ class MessagesController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function getLoadLatestMessages(Request $request)
     {
         if (!$request->user_id) {
@@ -53,9 +53,14 @@ class MessagesController extends Controller
 
             $message->content = $request->message;
         } else {
-            if ($request->hasFile("image")) {
-                $filename = $this->uploadImage($request);
-                $message->image = $filename;
+            if ($files = $request->file('file')) {
+                $image = array();
+                foreach ($files as $file) {
+                    $filename = $file->getClientOriginalName();
+                    $file->move(public_path('uploads'), $filename);
+                    $image[] = $filename;
+                }
+                $message['image'] = json_encode($image);
             }
         }
         $message->save();
@@ -111,15 +116,5 @@ class MessagesController extends Controller
             ->orderBy('created_at', 'DESC')->limit(10)->get();
 
         return $previousMessages;
-    }
-
-    private function uploadImage($request)
-    {
-        $file = $request->file('image');
-        $filename = md5(uniqid()) . "." . $file->getClientOriginalExtension();
-
-        $file->move(public_path('uploads'), $filename);
-
-        return $filename;
     }
 }
