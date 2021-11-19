@@ -20,8 +20,8 @@
                             <i class="glyphicon glyphicon-send"></i>
                             Send</button>
                     </div>
-                    <form method="post" enctype="multipart/form-data" class="upload-frm" style="display: none">
-                        <input type="file" name="image[]" class="image" accept="image/png, image/gif, image/jpeg" multiple />
+                    <form method="POST" enctype="multipart/form-data" class="upload-frm" style="display: none">
+                        <input type="file" name="image[]" class="image" accept="image/*" multiple />
                     </form>
 
                     <div class="emoji-list">

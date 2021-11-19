@@ -53,14 +53,14 @@ class MessagesController extends Controller
 
             $message->content = $request->message;
         } else {
-            if ($files = $request->file('file')) {
+            if ($files = $request->file('image')) {
                 $image = array();
                 foreach ($files as $file) {
                     $filename = $file->getClientOriginalName();
                     $file->move(public_path('uploads'), $filename);
                     $image[] = $filename;
                 }
-                $message['image'] = json_encode($image);
+                $message['image'] = $image;
             }
         }
         $message->save();

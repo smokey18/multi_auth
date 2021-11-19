@@ -35,6 +35,6 @@ class Message extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->image ? url('/') . '/uploads/' . $this->image : "";
+        return $this->image ? url('/') . '/uploads/' . $this->image : null;
     }
 }

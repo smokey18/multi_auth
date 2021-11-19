@@ -94,10 +94,6 @@
         </div>
 
         <div id="chat-overlay" class="row"></div>
-
-        <audio id="chat-alert-sound" style="display: none" muted="muted">
-            <source src="{{ asset('sound/facebook_chat.mp3') }}" />
-        </audio>
     </div>
 
     <input type="hidden" id="current_user" value="{{ \Auth::user()->id }}" />
