@@ -52,17 +52,22 @@ class MessagesController extends Controller
         if ($request->message != '' && $request->message != null && $request->message != 'null') {
 
             $message->content = $request->message;
-        } else {
-            if ($files = $request->file('image')) {
-                $image = array();
-                foreach ($files as $file) {
-                    $filename = $file->getClientOriginalName();
-                    $file->move(public_path('uploads'), $filename);
-                    $image[] = $filename;
-                }
-                $message['image'] = $image;
-            }
         }
+
+        if (isset($request['image']) && $request->hasFile("image")) {
+            $file = $request->file('image');
+            $filename = md5(uniqid()) . "." . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $filename);
+            $message->image = $filename;
+        }
+
+        if (isset($request['video']) && $request->hasFile("video")) {
+            $file = $request->file('video');
+            $filename = md5(uniqid()) . "." . $file->getClientOriginalExtension();
+            $file->move(public_path('videos'), $filename);
+            $message->video = $filename;
+        }
+
         $message->save();
 
 

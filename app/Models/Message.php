@@ -9,9 +9,9 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $appends = ['date_time_str', 'date_human_readable', 'image_url'];
+    protected $appends = ['date_time_str', 'date_human_readable', 'image_url', 'video_url'];
 
-    protected $fillable = ['message', 'image'];
+    protected $fillable = ['message', 'image', 'video'];
 
     public function fromUser()
     {
@@ -36,5 +36,10 @@ class Message extends Model
     public function getImageUrlAttribute()
     {
         return $this->image ? url('/') . '/uploads/' . $this->image : null;
+    }
+
+    public function getVideoUrlAttribute()
+    {
+        return $this->video ? url('/') . '/videos/' . $this->video : null;
     }
 }

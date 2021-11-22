@@ -72,8 +72,16 @@
         $(this).parents(".panel-footer").find(".image").trigger("click");
     });
 
+    $(".upload-btn-video").on("click", function () {
+        $(this).parents(".panel-footer").find(".video").trigger("click");
+    });
+
     $(".image").on("change", function () {
         $(this).parent(".upload-frm").submit();
+    });
+
+    $(".video").on("change", function () {
+        $(this).parent(".upload-frm-video").submit();
     });
 
     $(".upload-frm").on("submit", function (e) {
@@ -82,6 +90,15 @@
             $(this).parents(".chat-opened").find(".to_user_id").val(),
             null,
             $(this).find(".image")[0].files[0]
+        );
+    });
+
+    $(".upload-frm-video").on("submit", function (e) {
+        e.preventDefault();
+        send(
+            $(this).parents(".chat-opened").find(".to_user_id").val(),
+            null,
+            $(this).find(".video")[0].files[0]
         );
     });
 
@@ -189,6 +206,7 @@ function send(to_user, message, file) {
     formData.append("_token", $("meta[name='csrf-token']").attr("content"));
     formData.append("message", message);
     formData.append("image", file);
+    formData.append("video", file);
 
     $.ajax({
         url: window.base_url + "/send",
@@ -423,6 +441,11 @@ function getMessageBody(message) {
             '<div style="width: 100%;"><img class="img-responsive" src="' +
             message.image_url +
             '" /></div>';
+    } else if (message.video_url) {
+        content =
+            '<div style="width: 100%;"><video controls><source src="' +
+            message.video_url +
+            '"></video></div>';
     }
 
     return content;

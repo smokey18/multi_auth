@@ -14,6 +14,10 @@
                         <button type="button" class="btn btn-default btn-sm upload-btn">
                             <i class="glyphicon glyphicon-picture"></i>
                         </button>
+                        
+                        <button type="button" class="btn btn-default btn-sm upload-btn-video">
+                            <i class="glyphicon glyphicon-play"></i>
+                        </button>
                         <textarea class="form-control input-sm chat_input"
                             placeholder="Write your message here..."></textarea>
                         <button class="btn btn-primary btn-sm btn-chat" type="button" data-to-user="" disabled>
@@ -21,7 +25,11 @@
                             Send</button>
                     </div>
                     <form method="POST" enctype="multipart/form-data" class="upload-frm" style="display: none">
-                        <input type="file" name="image[]" class="image" accept="image/*" multiple />
+                        <input type="file" name="image" class="image" accept="image/*" multiple />
+                    </form>
+                    
+                    <form method="POST" enctype="multipart/form-data" class="upload-frm-video" style="display: none">
+                        <input type="file" name="video" class="video" accept="video/*">
                     </form>
 
                     <div class="emoji-list">
